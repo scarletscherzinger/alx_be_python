@@ -1,23 +1,31 @@
-# control-flow/daily_reminder.py
+# daily_reminder.py
 
+# Prompt for inputs
 task = input("Enter your task: ")
-priority = input("Priority (high/medium/low): ")
-time_bound = input("Is it time-bound? (yes/no): ")
+priority = input("Priority (high/medium/low): ").lower()
+time_bound = input("Is it time-bound? (yes/no): ").lower()
 
+# Process with match case
 match priority:
     case "high":
-        reminder = f"Reminder: '{task}' is a high priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a high priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a high priority task. Try to complete it as soon as possible.")
+
     case "medium":
-        reminder = f"Reminder: '{task}' is a medium priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a medium priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a medium priority task. Plan to work on it soon.")
+
     case "low":
-        reminder = f"Note: '{task}' is a low priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a low priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a low priority task. Consider completing it when you have free time.")
+
     case _:
-        reminder = f"Note: '{task}' has an unknown priority level"
+        print("Invalid priority entered. Please use high, medium, or low.")
 
-if time_bound == "yes":
-    reminder += " that requires immediate attention today!"
-elif priority == "low":
-    reminder += ". Consider completing it when you have free time."
-
-print(reminder)
 
