@@ -19,9 +19,12 @@ def get_temperature_input():
     except ValueError:
         raise ValueError("Invalid temperature. Please enter a numeric value.")
 
-# Function to get unit input (C or F)
+# Function to get unit input (C or F) and raise ValueError if invalid
 def get_unit_input():
-    return input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+    unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+    if unit not in ('C', 'F'):
+        raise ValueError("Invalid temperature unit. Please enter 'C' or 'F'.")
+    return unit
 
 # Main function to orchestrate conversion
 def main():
@@ -31,11 +34,9 @@ def main():
     if unit == 'C':
         converted = convert_to_fahrenheit(temperature)
         print(f"{temperature}°C is {converted}°F")
-    elif unit == 'F':
+    else:  # unit == 'F'
         converted = convert_to_celsius(temperature)
         print(f"{temperature}°F is {converted}°C")
-    else:
-        print("Invalid temperature unit. Please enter 'C' or 'F'.")
 
 if __name__ == "__main__":
     main()
